@@ -435,6 +435,7 @@
   const SITES = [
     {
       author: "웅이피리",
+      realName: "백현규",
       name: "이름 닮은 동물",
       emoji: "🦊",
       color: "#ffd6a5",
@@ -443,6 +444,7 @@
     },
     {
       author: "곧점심",
+      realName: "정민현",
       name: "점심먹자",
       emoji: "🍱",
       color: "#caffbf",
@@ -451,6 +453,7 @@
     },
     {
       author: "럭키걸",
+      realName: "박하윤",
       name: "이번엔 진짜 될 것 같아",
       emoji: "🎟️",
       color: "#fdffb6",
@@ -459,6 +462,7 @@
     },
     {
       author: "말랑마스터",
+      realName: "노은선",
       rank: 2,
       name: "말랑이 괴롭히기",
       emoji: "🫠",
@@ -468,6 +472,7 @@
     },
     {
       author: "건강이최고",
+      realName: "배대웅",
       rank: 1,
       name: "절대 누르지 마시오",
       emoji: "🔴",
@@ -477,6 +482,7 @@
     },
     {
       author: "밍구",
+      realName: "심다인",
       name: "점메추",
       emoji: "🍜",
       color: "#9bf6ff",
@@ -485,6 +491,7 @@
     },
     {
       author: "배고파요",
+      realName: "김총비",
       rank: 3,
       name: "야옹이네",
       emoji: "🐱",
@@ -511,6 +518,7 @@
       }
     });
   }
+  const byline = (site) => "by " + site.author + (site.realName ? ` (${site.realName})` : "");
   const plain = (text) => text.replace(/\*\*/g, "").replace(/\s+/g, " ");
 
   const MEDALS = { 1: "🥇", 2: "🥈", 3: "🥉" };
@@ -543,7 +551,7 @@
         <div class="step"></div>`;
       li.querySelector(".medal").textContent = MEDALS[site.rank];
       li.querySelector("h3").textContent = site.name;
-      li.querySelector(".by").textContent = "by " + site.author;
+      li.querySelector(".by").textContent = byline(site);
       li.querySelector(".step").textContent = site.rank;
       li.querySelector(".btn-go").href = site.url;
       li.querySelector(".btn-info").addEventListener("click", (e) => openModal(i, e.currentTarget));
@@ -576,7 +584,7 @@
     li.querySelector("h3").textContent = site.name;
     addRankTag(li.querySelector("h3"), site.rank);
     if (MEDALS[site.rank]) li.classList.add("ranked");
-    li.querySelector(".by").textContent = "by " + site.author;
+    li.querySelector(".by").textContent = byline(site);
     li.querySelector(".teaser").textContent = plain(site.desc);
     li.querySelector(".btn-go").href = site.url;
     li.querySelector(".btn-info").addEventListener("click", (e) => openModal(i, e.currentTarget));
@@ -596,7 +604,7 @@
     $("mNum").textContent = "No." + pad(i + 1);
     $("mTitle").textContent = site.name;
     addRankTag($("mTitle"), site.rank);
-    $("mBy").textContent = "by " + site.author;
+    $("mBy").textContent = byline(site);
     renderRich($("mBody"), site.desc);
     $("mBody").scrollTop = 0;
     $("mGo").href = site.url;
